@@ -25,10 +25,7 @@ const runSingleBot = async function (bigoUrl, bot) {
 
     try {
       await interactWithBigo(page, bigoUrl, bot.phoneNum);
-      updateBotStatus(bot, "BUSY", bigoUrl);
     } catch (ex) {
-      updateBotStatus(bot, "FREE", "");
-
       console.log(ex);
       await page.close();
     }
@@ -69,6 +66,8 @@ const main = async () => {
   const bots = await Bot.find({
     status: "FREE",
   }).limit(10);
+
+  bots.foreach((x) => updateBotStatus(x, "BUSY", process.env.bigoUrl));
 
   runMultipleBots(
     `https://www.bigo.tv/en/${process.env.bigoUrl
