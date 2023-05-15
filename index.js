@@ -67,7 +67,7 @@ const main = async () => {
     status: "FREE",
   }).limit(10);
 
-  bots.foreach((x) => updateBotStatus(x, "BUSY", process.env.bigoUrl));
+  bots.forEach((x) => updateBotStatus(x, "BUSY", process.env.bigoUrl));
 
   runMultipleBots(
     `https://www.bigo.tv/en/${process.env.bigoUrl
