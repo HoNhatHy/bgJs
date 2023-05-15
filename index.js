@@ -2,13 +2,13 @@ const puppeteer = require("puppeteer");
 const mongoose = require("mongoose");
 
 const { interactWithBigo } = require("./bigo/bigoInteraction");
-const { Bot } = require('./models/Bot')
+const { Bot } = require("./models/Bot");
 
 const updateBotStatus = async (bot, state, bigoUrl) => {
-  bot.status = state
-  bot.watchingIdolId = bigoUrl
-  await bot.save()
-}
+  bot.status = state;
+  bot.watchingIdolId = bigoUrl;
+  await bot.save();
+};
 
 const runSingleBot = async function (bigoUrl, bot) {
   try {
@@ -16,7 +16,7 @@ const runSingleBot = async function (bigoUrl, bot) {
       headless: true,
       defaultViewport: null,
       args: ["--start-maximized", "--no-sandbox"],
-      executablePath: "C:\\Program Files\\Google\\Chrome\\Application\chrome.exe",
+      executablePath: "/usr/bin/google-chrome-stable",
     });
     console.log(`** Start login with ${bot.phoneNum}`);
 
@@ -25,10 +25,9 @@ const runSingleBot = async function (bigoUrl, bot) {
 
     try {
       await interactWithBigo(page, bigoUrl, bot.phoneNum);
-      updateBotStatus(bot, "BUSY", bigoUrl)
-
+      updateBotStatus(bot, "BUSY", bigoUrl);
     } catch (ex) {
-      updateBotStatus(bot, "FREE", "")
+      updateBotStatus(bot, "FREE", "");
 
       console.log(ex);
       await page.close();
@@ -53,20 +52,23 @@ const runMultipleBots = async function (bigoUrl, bots) {
 };
 
 const main = async () => {
-    await mongoose.connect('mongodb://localhost:27017', {
-    authMechanism: 'DEFAULT',
-    dbName: 'bigo-db',
-    auth: {
-      username: 'admin',
-      password: 'admin'
+  await mongoose.connect(
+    "mongodb+srv://<user>:<password>@bgdb.mongocluster.cosmos.azure.com/?tls=true&authMechanism=SCRAM-SHA-256&retrywrites=false&maxIdleTimeMS=120000",
+    {
+      authMechanism: "SCRAM-SHA-256",
+      dbName: "bgdb",
+      auth: {
+        username: "bgadmin",
+        password: "1204$Honhathy",
+      },
     }
-  })
+  );
 
-  console.log('Connected to mongodb')
+  console.log("Connected to mongodb");
 
   const bots = await Bot.find({
-    status: 'FREE'
-  }).limit(10)
+    status: "FREE",
+  }).limit(10);
 
   runMultipleBots(
     `https://www.bigo.tv/en/${process.env.bigoUrl
@@ -74,6 +76,6 @@ const main = async () => {
       .substring(2, process.env.bigoUrl.length)}`,
     bots
   );
-}
+};
 
-main()
+main();
