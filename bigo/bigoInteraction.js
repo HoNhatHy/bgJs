@@ -5,7 +5,7 @@ const comment = async function (page) {
     content: `
         const comment = function() {
           const commentArea = document.querySelector(".user_words_msg textarea");
-          const commentArr = ["Hello", "Hi em", "Cute", "Xinh", "Xin chao", "Ok"];
+          const commentArr = ["Hello", "Hi em", "Cute", "Xinh", "Xin chao", "Cưng xỉu", "Chào em nha", "Dễ thương vậy ta", "Em nhà ở đâu thế", "Em hôm nay nhìn xinh thía", "Buổi tối vv nha em", "Nay nhìn lạ vậy em", "Sao hôm qua ko thấy em live", "<3 <3 <3", ":))))", ":((", ":vvv", ":3 :3", ":D :D :D", ":D :D"];
           commentArea.value =
             commentArr[Math.floor(Math.random() * commentArr.length)];
           commentArea.dispatchEvent(new Event("input", { bubbles: true }));
@@ -15,7 +15,9 @@ const comment = async function (page) {
       `,
   });
 
-  await sleep(1000);
+  const randomNumber = Math.random() * (1000, 300000);
+
+  await sleep(randomNumber);
 
   await page.evaluate(() => comment());
   console.log("comment roi");
