@@ -69,12 +69,7 @@ const main = async () => {
 
   bots.forEach((x) => updateBotStatus(x, "BUSY", process.env.bigoUrl));
 
-  runMultipleBots(
-    `https://www.bigo.tv/en/${process.env.bigoUrl
-      .slice(0, -8)
-      .substring(2, process.env.bigoUrl.length)}`,
-    bots
-  );
+  runMultipleBots(`https://www.bigo.tv/918970883}`, bots);
 };
 
 main();
