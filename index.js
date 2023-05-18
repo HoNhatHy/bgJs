@@ -18,13 +18,13 @@ const runSingleBot = async function (bigoUrl, bot) {
       args: ["--start-maximized", "--no-sandbox"],
       executablePath: "/usr/bin/google-chrome-stable",
     });
-    console.log(`** Start login with ${bot.phoneNum}`);
+    console.log(`** Start login with ${bot}`);
 
     const [page] = await browser.pages();
     await page.setBypassCSP(true);
 
     try {
-      await interactWithBigo(page, bigoUrl, bot.phoneNum);
+      await interactWithBigo(page, bigoUrl, bot);
     } catch (ex) {
       console.log(ex);
       await page.close();
