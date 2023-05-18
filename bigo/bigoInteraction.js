@@ -36,23 +36,21 @@ const checkIfVerifySuccessfully = async function (page, phoneNumber) {
 
   if (!captchaTextContent.includes("successful")) {
     console.log(`Login with ${phoneNumber} failed`);
-    await CurrentPage.CloseAsync();
+    await page.CloseAsync();
   } else {
     console.log(`LOGIN WITH ${phoneNumber} SUCCESSFULLY`);
   }
 };
 
 const dragSliderToVerify = async function (page) {
-  await page.waitForSelector("#captcha-box-login-bigo-captcha-element", {
-    timeout: 5000,
-  });
-  const sliderElement = await page.$("#captcha-box-login-bigo-captcha-element");
-  const slider = await sliderElement.boundingBox();
-
-  await page.waitForSelector(
-    "#captcha-box-login-bigo-captcha-element-bigo-captcha-sliderele",
-    { timeout: 5000 }
-  );
+  try {
+    await page.waitForSelector(
+      "#captcha-box-login-bigo-captcha-element-bigo-captcha-sliderele",
+      { timeout: 5000 }
+    );
+  } catch (ex) {
+    console.log(ex);
+  }
   const sliderHandle = await page.$(
     "#captcha-box-login-bigo-captcha-element-bigo-captcha-sliderele"
   );
