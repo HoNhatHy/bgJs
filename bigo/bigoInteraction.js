@@ -36,7 +36,7 @@ const checkIfVerifySuccessfully = async function (page, phoneNumber) {
 
   if (!captchaTextContent.includes("successful")) {
     console.log(`Login with ${phoneNumber} failed`);
-    await page.CloseAsync();
+    await page.close();
   } else {
     console.log(`LOGIN WITH ${phoneNumber} SUCCESSFULLY`);
   }
