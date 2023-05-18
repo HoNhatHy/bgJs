@@ -16,8 +16,7 @@ const runSingleBot = async function (bigoUrl, bot) {
       headless: false,
       defaultViewport: null,
       args: ["--start-maximized", "--no-sandbox"],
-      executablePath:
-        "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      executablePath: "/usr/bin/google-chrome-stable",
     });
     console.log(`** Start login with ${bot.phoneNum}`);
 
