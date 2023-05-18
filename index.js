@@ -13,7 +13,7 @@ const updateBotStatus = async (bot, state, bigoUrl) => {
 const runSingleBot = async function (bigoUrl, bot) {
   try {
     const browser = await puppeteer.launch({
-      headless: false,
+      headless: true,
       defaultViewport: null,
       args: ["--start-maximized", "--no-sandbox"],
       executablePath: "/usr/bin/google-chrome-stable",
