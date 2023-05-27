@@ -79,16 +79,26 @@ const main = async () => {
 
   // bots.forEach((x) => updateBotStatus(x, 'BUSY', process.env.bigoUrl))
   const bots = [
-    '921627914', // Mỹ Huy
-    '364112810', // Bao Khang
-    '924879261', // Chi Bao
-    '589312506', // Minh Minh
-    '585499059', // Hoang Phuc
-    '567985413', // Hoang Anh
-    '589451236', // Bao Khoa
-    '522711367', // Stephen Chow
-    '869177531', // Nhat Hy
-    '926134534' // Ku em
+    // '921627914', // Mỹ Huy
+    // '364112810', // Bao Khang
+    // '924879261', // Chi Bao
+    // '589312506', // Minh Minh
+    // '585499059', // Hoang Phuc
+    // '567985413', // Hoang Anh
+    // '589451236', // Bao Khoa
+    // '522711367', // Stephen Chow
+    // '869177531', // Nhat Hy
+    // '926134534', // Ku em
+    '386179721',
+    '374512062',
+    '924900529',
+    '342592183',
+    '928421380',
+    '369115446',
+    '333098911',
+    '383704011',
+    '862581848',
+    '928420653'
   ]
 
   runMultipleBots('https://www.bigo.tv/797312596', bots)
