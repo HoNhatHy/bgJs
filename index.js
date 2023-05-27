@@ -91,7 +91,7 @@ const main = async () => {
     '926134534' // Ku em
   ]
 
-  runMultipleBots('https://www.bigo.tv/131474106', bots)
+  runMultipleBots('https://www.bigo.tv/797312596', bots)
 }
 
 main()

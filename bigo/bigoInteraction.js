@@ -182,7 +182,7 @@ const interactWithBigo = async function (page, bigoUrl, phoneNumber) {
 
   await sleep(5000)
 
-  await comment(page)
+  comment(page)
 }
 
 module.exports = { interactWithBigo }
