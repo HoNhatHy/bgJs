@@ -15,7 +15,8 @@ const comment = async function (page) {
       `
   })
 
-  await sleep(1000)
+  const randomNumber = Math.random() * (100000 - 1000) + 1000
+  await sleep(randomNumber)
 
   await page.evaluate(() => comment())
   console.log('comment roi')
