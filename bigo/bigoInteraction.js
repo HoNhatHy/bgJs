@@ -25,20 +25,29 @@ const clickToSigninBtn = async function (page) {
   await page.evaluate((_) => document.querySelector('.btn-sumbit').click())
 }
 
-const checkIfVerifySuccessfully = async function (page, phoneNumber) {
-  const captchaTextElm = await page.$(
-    '#captcha-box-login-bigo-captcha-element-bigo-captcha-textelediv'
-  )
+const checkIfVerifySuccessfully = async function (page, isBefore) {
+  let captchaTextElm = null
+
+  if (isBefore) {
+    captchaTextElm = await page.$(
+      '#captcha-box-login-bigo-captcha-element-bigo-captcha-successeletext'
+    )
+    if (captchaTextElm === null) {
+      captchaTextElm = await page.$('#captcha-box-login-bigo-captcha-element-bigo-captcha-textelediv')
+    }
+  } else {
+    captchaTextElm = await page.$('#captcha-box-login-bigo-captcha-element-bigo-captcha-textelediv')
+  }
+
   const captchaTextContent = await page.evaluate(
     (el) => el.textContent,
     captchaTextElm
   )
 
   if (!captchaTextContent.includes('successful')) {
-    console.log(`Login with ${phoneNumber} failed`)
-    await page.close()
+    return false
   } else {
-    console.log(`LOGIN WITH ${phoneNumber} SUCCESSFULLY`)
+    return true
   }
 }
 
@@ -147,11 +156,24 @@ const interactWithBigo = async function (page, bigoUrl, phoneNumber) {
 
   await sleep(500)
 
-  await dragSliderToVerify(page)
+  let didVerifySuccessfully = await checkIfVerifySuccessfully(page, true)
+  if (!didVerifySuccessfully) {
+    await dragSliderToVerify(page)
 
-  await sleep(500)
+    await sleep(500)
 
-  await checkIfVerifySuccessfully(page, phoneNumber)
+    didVerifySuccessfully = await checkIfVerifySuccessfully(page, false)
+
+    if (didVerifySuccessfully) {
+      console.log(`LOGIN WITH ${phoneNumber} SUCCESSFULLY`)
+    } else {
+      console.log(`Login with ${phoneNumber} failed`)
+      await page.close()
+      return
+    }
+  } else {
+    console.log(`LOGIN WITH ${phoneNumber} SUCCESSFULLY`)
+  }
 
   await sleep(500)
 

@@ -1,4 +1,6 @@
-const puppeteer = require('puppeteer')
+// const puppeteer = require('puppeteer')
+const puppeteer = require('puppeteer-extra')
+const StealthPlugin = require('puppeteer-extra-plugin-stealth')
 // const mongoose = require('mongoose')
 
 const { interactWithBigo } = require('./bigo/bigoInteraction')
@@ -11,11 +13,19 @@ const { interactWithBigo } = require('./bigo/bigoInteraction')
 // }
 
 const runSingleBot = async function (bigoUrl, bot) {
+  puppeteer.use(StealthPlugin())
+
   try {
     const browser = await puppeteer.launch({
-      headless: true,
+      headless: 'new',
       defaultViewport: null,
-      args: ['--start-maximized', '--no-sandbox'],
+      args: [
+        '--no-sandbox',
+        '--user-data-dir=/tmp/chromium',
+        '--disable-web-security',
+        '--disable-features=site-per-process',
+        '--start-maximized'
+      ],
       executablePath: '/usr/bin/google-chrome-stable'
     })
     console.log(`** Start login with ${bot}`)
@@ -77,16 +87,12 @@ const main = async () => {
     '585499059', // Hoang Phuc
     '567985413', // Hoang Anh
     '589451236', // Bao Khoa
-    '921627914', // Mỹ Huy
-    '364112810', // Bao Khang
-    '924879261', // Chi Bao
-    '589312506', // Minh Minh
-    '585499059', // Hoang Phuc
-    '567985413', // Hoang Anh
-    '589451236' // Bao Khoa
+    '522711367', // Stephen Chow
+    '869177531', // Nhat Hy
+    '926134534' // Ku em
   ]
 
-  runMultipleBots('https://www.bigo.tv/918970883', bots)
+  runMultipleBots('https://www.bigo.tv/185454062', bots)
 }
 
 main()
