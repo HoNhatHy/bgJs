@@ -21,7 +21,6 @@ const runSingleBot = async function (bigoUrl, bot) {
       defaultViewport: null,
       args: [
         '--no-sandbox',
-        '--user-data-dir=/tmp/chromium',
         '--disable-web-security',
         '--disable-features=site-per-process',
         '--start-maximized'
