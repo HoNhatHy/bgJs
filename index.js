@@ -47,7 +47,7 @@ const runSingleBot = async function (bigoUrl, bot) {
 const runMultipleBots = async function (bigoUrl, bots) {
   try {
     console.log(bigoUrl)
-    for (let i = 0; i < 1; i++) {
+    for (let i = 0; i < bots.length; i++) {
       if (i % 2 === 0) {
         runSingleBot(bigoUrl, bots[i], i)
       } else {
