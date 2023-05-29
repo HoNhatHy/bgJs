@@ -80,86 +80,86 @@ const main = async () => {
 
   // bots.forEach((x) => updateBotStatus(x, 'BUSY', process.env.bigoUrl))
   const bots = [
-    // {
-    //   phone: '921627914', // Mỹ Huy
-    //   userId: '903991743'
-    // },
-    // {
-    //   phone: '364112810', // Bao Khang
-    //   userId: '903944434'
-    // },
-    // {
-    //   phone: '924879261', // Chi Bao
-    //   userId: '903982690'
-    // },
-    // {
-    //   phone: '589312506', // Minh Minh
-    //   userId: '903982707'
-    // },
-    // {
-    //   phone: '585499059', // Hoang Phuc
-    //   userId: '903982723'
-    // },
-    // {
-    //   phone: '567985413', // Hoang Anh
-    //   userId: '903982737'
-    // },
-    // {
-    //   phone: '589451236', // Bao Khoa
-    //   userId: '903982754'
-    // },
-    // {
-    //   phone: '522711367', // Stephen Chow
-    //   userId: '902913067'
-    // },
-    // {
-    //   phone: '869177531', // Nhat Hy
-    //   userId: '902868157'
-    // },
-    // {
-    //   phone: '926134534', // Ku em
-    //   userId: '902868456'
-    // },
     {
-      phone: '386179721', // nhatquang912
-      userId: '919566295'
+      phone: '921627914', // Mỹ Huy
+      userId: '903991743'
     },
     {
-      phone: '374512062', // ngocchung9210
-      userId: '919566285'
+      phone: '364112810', // Bao Khang
+      userId: '903944434'
     },
     {
-      phone: '924900529', // thuannguyen7382
-      userId: '919566266'
+      phone: '924879261', // Chi Bao
+      userId: '903982690'
     },
     {
-      phone: '342592183', // vutruong1203
-      userId: '919602523'
+      phone: '589312506', // Minh Minh
+      userId: '903982707'
     },
     {
-      phone: '928421380', // duongtin6272
-      userId: '919602461'
+      phone: '585499059', // Hoang Phuc
+      userId: '903982723'
     },
     {
-      phone: '369115446', // congvuong0182
-      userId: '919566107'
+      phone: '567985413', // Hoang Anh
+      userId: '903982737'
     },
     {
-      phone: '333098911', // donghiep7291
-      userId: '919602289'
+      phone: '589451236', // Bao Khoa
+      userId: '903982754'
     },
     {
-      phone: '383704011', // tungduong0803
-      userId: '919565978'
+      phone: '522711367', // Stephen Chow
+      userId: '902913067'
     },
     {
-      phone: '862581848', // viettan1930
-      userId: '919565959'
+      phone: '869177531', // Nhat Hy
+      userId: '902868157'
     },
     {
-      phone: '928420653', // hoangnhan0282
-      userId: '919565932'
+      phone: '926134534', // Ku em
+      userId: '902868456'
     }
+    // {
+    //   phone: '386179721', // nhatquang912
+    //   userId: '919566295'
+    // },
+    // {
+    //   phone: '374512062', // ngocchung9210
+    //   userId: '919566285'
+    // },
+    // {
+    //   phone: '924900529', // thuannguyen7382
+    //   userId: '919566266'
+    // },
+    // {
+    //   phone: '342592183', // vutruong1203
+    //   userId: '919602523'
+    // },
+    // {
+    //   phone: '928421380', // duongtin6272
+    //   userId: '919602461'
+    // },
+    // {
+    //   phone: '369115446', // congvuong0182
+    //   userId: '919566107'
+    // },
+    // {
+    //   phone: '333098911', // donghiep7291
+    //   userId: '919602289'
+    // },
+    // {
+    //   phone: '383704011', // tungduong0803
+    //   userId: '919565978'
+    // },
+    // {
+    //   phone: '862581848', // viettan1930
+    //   userId: '919565959'
+    // },
+    // {
+    //   phone: '928420653', // hoangnhan0282
+    //   userId: '919565932'
+    // }
   ]
 
   runMultipleBots('https://www.bigo.tv/903908582', bots)
