@@ -25,15 +25,16 @@ const runSingleBot = async function (bigoUrl, bot) {
         '--disable-features=site-per-process',
         '--start-maximized'
       ],
-      executablePath: '/usr/bin/google-chrome-stable'
+      executablePath: process.platform === 'win32' ? 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe' : '/usr/bin/google-chrome-stable'
     })
-    console.log(`** Start login with ${bot}`)
+    console.log(`** Start login with ${bot.phone}`)
 
     const [page] = await browser.pages()
     await page.setBypassCSP(true)
+    await page.setUserAgent(`BigoLive/5.41.2.2942(Android,9)/(bigoId,${bot.userId})`)
 
     try {
-      await interactWithBigo(page, bigoUrl, bot)
+      await interactWithBigo(page, bigoUrl, bot.phone)
     } catch (ex) {
       console.log(ex)
       await page.close()
@@ -46,7 +47,7 @@ const runSingleBot = async function (bigoUrl, bot) {
 const runMultipleBots = async function (bigoUrl, bots) {
   try {
     console.log(bigoUrl)
-    for (let i = 0; i < bots.length; i++) {
+    for (let i = 0; i < 1; i++) {
       if (i % 2 === 0) {
         runSingleBot(bigoUrl, bots[i], i)
       } else {
@@ -79,29 +80,89 @@ const main = async () => {
 
   // bots.forEach((x) => updateBotStatus(x, 'BUSY', process.env.bigoUrl))
   const bots = [
-    // '921627914', // Mỹ Huy
-    // '364112810', // Bao Khang
-    // '924879261', // Chi Bao
-    // '589312506', // Minh Minh
-    // '585499059', // Hoang Phuc
-    // '567985413', // Hoang Anh
-    // '589451236', // Bao Khoa
-    // '522711367', // Stephen Chow
-    // '869177531', // Nhat Hy
-    // '926134534', // Ku em
-    '386179721',
-    '374512062',
-    '924900529',
-    '342592183',
-    '928421380',
-    '369115446',
-    '333098911',
-    '383704011',
-    '862581848',
-    '928420653'
+    // {
+    //   phone: '921627914', // Mỹ Huy
+    //   userId: '903991743'
+    // },
+    // {
+    //   phone: '364112810', // Bao Khang
+    //   userId: '903944434'
+    // },
+    // {
+    //   phone: '924879261', // Chi Bao
+    //   userId: '903982690'
+    // },
+    // {
+    //   phone: '589312506', // Minh Minh
+    //   userId: '903982707'
+    // },
+    // {
+    //   phone: '585499059', // Hoang Phuc
+    //   userId: '903982723'
+    // },
+    // {
+    //   phone: '567985413', // Hoang Anh
+    //   userId: '903982737'
+    // },
+    // {
+    //   phone: '589451236', // Bao Khoa
+    //   userId: '903982754'
+    // },
+    // {
+    //   phone: '522711367', // Stephen Chow
+    //   userId: '902913067'
+    // },
+    // {
+    //   phone: '869177531', // Nhat Hy
+    //   userId: '902868157'
+    // },
+    // {
+    //   phone: '926134534', // Ku em
+    //   userId: '902868456'
+    // },
+    {
+      phone: '386179721', // nhatquang912
+      userId: '919566295'
+    },
+    {
+      phone: '374512062', // ngocchung9210
+      userId: '919566285'
+    },
+    {
+      phone: '924900529', // thuannguyen7382
+      userId: '919566266'
+    },
+    {
+      phone: '342592183', // vutruong1203
+      userId: '919602523'
+    },
+    {
+      phone: '928421380', // duongtin6272
+      userId: '919602461'
+    },
+    {
+      phone: '369115446', // congvuong0182
+      userId: '919566107'
+    },
+    {
+      phone: '333098911', // donghiep7291
+      userId: '919602289'
+    },
+    {
+      phone: '383704011', // tungduong0803
+      userId: '919565978'
+    },
+    {
+      phone: '862581848', // viettan1930
+      userId: '919565959'
+    },
+    {
+      phone: '928420653', // hoangnhan0282
+      userId: '919565932'
+    }
   ]
 
-  runMultipleBots('https://www.bigo.tv/797312596', bots)
+  runMultipleBots('https://www.bigo.tv/903908582', bots)
 }
 
 main()
