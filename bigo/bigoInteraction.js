@@ -1,5 +1,13 @@
 const { sleep } = require('../helper/sleep')
 
+const moveCursor = async function (page) {
+  const randomNumber1 = Math.random() * (800 - 100) + 100
+  const randomNumber2 = Math.random() * (654 - 124) + 124
+  await page.mouse.move(randomNumber1, randomNumber2, {
+    steps: 300 + Math.abs(randomNumber1 - randomNumber2)
+  })
+}
+
 const comment = async function (page) {
   await page.addScriptTag({
     content: `
@@ -16,7 +24,7 @@ const comment = async function (page) {
   })
 
   const randomNumber = Math.random() * (100000 - 1000) + 1000
-  await sleep(randomNumber)
+  await moveCursor(page);
 
   await page.evaluate(() => comment())
   console.log('comment roi')
@@ -91,13 +99,13 @@ const typeInfoToLogin = async function (page, isAdvertisementAppreared) {
       document.querySelector('.head-right__login__btn').click()
     })
 
-    await sleep(500)
+    await moveCursor(page)
 
     await page.evaluate((_) => {
       document.querySelector('.right-top-change').click()
     })
 
-    await sleep(500)
+    await moveCursor(page)
 
     await page.evaluate(() => typeInfoToLogin())
   } else {
@@ -114,7 +122,7 @@ const interactWithBigo = async function (page, bigoUrl, phoneNumber) {
 
   await gotoBigoUrl(page, bigoUrl)
 
-  await sleep(2000)
+  await moveCursor(page)
 
   await page.addScriptTag({
     content: `
@@ -142,26 +150,26 @@ const interactWithBigo = async function (page, bigoUrl, phoneNumber) {
 
     await closeDownloadDialog(page)
 
-    await sleep(500)
+    await moveCursor(page)
 
     await typeInfoToLogin(page, isAdvertisementAppreared)
 
-    await sleep(5000)
+    await moveCursor(page)
   }
 
   if (!isAdvertisementAppreared) {
-    await sleep(10000)
+    await moveCursor(page)
 
     await closeDownloadDialog(page)
   }
 
-  await sleep(500)
+  await moveCursor(page)
 
   let didVerifySuccessfully = await checkIfVerifySuccessfully(page, true)
   if (!didVerifySuccessfully) {
     await dragSliderToVerify(page)
 
-    await sleep(500)
+    await moveCursor(page)
 
     didVerifySuccessfully = await checkIfVerifySuccessfully(page, false)
 
@@ -176,11 +184,11 @@ const interactWithBigo = async function (page, bigoUrl, phoneNumber) {
     console.log(`LOGIN WITH ${phoneNumber} SUCCESSFULLY`)
   }
 
-  await sleep(500)
+  await moveCursor(page)
 
   await clickToSigninBtn(page)
 
-  await sleep(5000)
+  await moveCursor(page)
 
   comment(page)
 }

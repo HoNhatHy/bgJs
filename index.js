@@ -162,7 +162,7 @@ const main = async () => {
     }
   ]
 
-  runMultipleBots('https://www.bigo.tv/903908582', bots)
+  runMultipleBots('https://www.bigo.tv/797312596', bots)
 }
 
 main()
