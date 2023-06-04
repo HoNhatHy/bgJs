@@ -23,8 +23,7 @@ const comment = async function (page) {
       `
   })
 
-  const randomNumber = Math.random() * (100000 - 1000) + 1000
-  await moveCursor(page);
+  await moveCursor(page)
 
   await page.evaluate(() => comment())
   console.log('comment roi')
