@@ -81,43 +81,43 @@ const main = async () => {
     {
       phone: '921627914', // Mỹ Huy
       userId: '903991743'
+    },
+    {
+      phone: '364112810', // Bao Khang
+      userId: '903944434'
+    },
+    {
+      phone: '924879261', // Chi Bao
+      userId: '903982690'
+    },
+    {
+      phone: '589312506', // Minh Minh
+      userId: '903982707'
+    },
+    {
+      phone: '585499059', // Hoang Phuc
+      userId: '903982723'
+    },
+    {
+      phone: '567985413', // Hoang Anh
+      userId: '903982737'
+    },
+    {
+      phone: '589451236', // Bao Khoa
+      userId: '903982754'
+    },
+    {
+      phone: '522711367', // Stephen Chow
+      userId: '902913067'
+    },
+    {
+      phone: '869177531', // Nhat Hy
+      userId: '902868157'
+    },
+    {
+      phone: '926134534', // Ku em
+      userId: '902868456'
     }
-    // {
-    //   phone: '364112810', // Bao Khang
-    //   userId: '903944434'
-    // },
-    // {
-    //   phone: '924879261', // Chi Bao
-    //   userId: '903982690'
-    // },
-    // {
-    //   phone: '589312506', // Minh Minh
-    //   userId: '903982707'
-    // },
-    // {
-    //   phone: '585499059', // Hoang Phuc
-    //   userId: '903982723'
-    // },
-    // {
-    //   phone: '567985413', // Hoang Anh
-    //   userId: '903982737'
-    // },
-    // {
-    //   phone: '589451236', // Bao Khoa
-    //   userId: '903982754'
-    // },
-    // {
-    //   phone: '522711367', // Stephen Chow
-    //   userId: '902913067'
-    // },
-    // {
-    //   phone: '869177531', // Nhat Hy
-    //   userId: '902868157'
-    // },
-    // {
-    //   phone: '926134534', // Ku em
-    //   userId: '902868456'
-    // }
     // {
     //   phone: '386179721', // nhatquang912
     //   userId: '919566295'
