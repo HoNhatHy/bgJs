@@ -38,14 +38,14 @@ const clickToSigninBtn = async function (page) {
   await page.evaluate((_) => document.querySelector('.btn-sumbit').click())
 }
 
-const checkIfVerifySuccessfully = async function (page, isBefore = false) {
+const checkIfVerifySuccessfully = async function (page, isBefore) {
   let captchaTextElm = null
 
   if (isBefore) {
     captchaTextElm = await page.$(
       '#captcha-box-login-bigo-captcha-element-bigo-captcha-successeletext'
     )
-    if (captchaTextElm) {
+    if (captchaTextElm === null) {
       captchaTextElm = await page.$('#captcha-box-login-bigo-captcha-element-bigo-captcha-textelediv')
     }
   } else {
@@ -106,20 +106,23 @@ const typeInfoToLogin = async function (page, phoneNumber) {
   if (!isAdvertisementAppreared) {
     isAdvertisementAppreared = await closeDownloadDialog(page)
   }
+  await sleep(500)
   await moveCursor(page, '.register-tips a')
   await page.click('.register-tips a')
 
   if (!isAdvertisementAppreared) {
     isAdvertisementAppreared = await closeDownloadDialog(page)
   }
+  await sleep(500)
   await moveCursor(page, '.tab-login-sign__item')
   await page.click('.tab-login-sign__item')
 
   if (!isAdvertisementAppreared) {
     isAdvertisementAppreared = await closeDownloadDialog(page)
   }
+  await sleep(500)
   const currentSelected = await page.$('input.current_selected')
-  await moveCursor(page, '.input-container')
+  await moveCursor(page, '.input.current_selected')
   await currentSelected.click()
 
   sleep(200)
@@ -136,6 +139,7 @@ const typeInfoToLogin = async function (page, phoneNumber) {
   if (!isAdvertisementAppreared) {
     isAdvertisementAppreared = await closeDownloadDialog(page)
   }
+  await sleep(500)
   await moveCursor(page, 'ul.country_list li')
   await page.click('ul.country_list li')
 
@@ -143,6 +147,7 @@ const typeInfoToLogin = async function (page, phoneNumber) {
   if (!isAdvertisementAppreared) {
     isAdvertisementAppreared = await closeDownloadDialog(page)
   }
+  await sleep(500)
   await moveCursor(page, '.phone-number-box input')
   const phoneBox = await page.$('.phone-number-box input')
   for (let i = 0; i < phoneNumber.length; i++) {
@@ -154,6 +159,7 @@ const typeInfoToLogin = async function (page, phoneNumber) {
   if (!isAdvertisementAppreared) {
     isAdvertisementAppreared = await closeDownloadDialog(page)
   }
+  await sleep(500)
   await moveCursor(page, '.password-tab input')
   const passwordBox = await page.$('.password-tab input')
   const password = '11011010aA'
