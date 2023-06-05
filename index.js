@@ -17,7 +17,7 @@ const runSingleBot = async function (bigoUrl, bot) {
 
   try {
     const browser = await puppeteer.launch({
-      headless: false,
+      headless: 'new',
       defaultViewport: null,
       args: [
         '--no-sandbox',
