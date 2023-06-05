@@ -1,6 +1,6 @@
-const puppeteer = require('puppeteer')
-// const puppeteer = require('puppeteer-extra')
-// const StealthPlugin = require('puppeteer-extra-plugin-stealth')
+// const puppeteer = require('puppeteer')
+const puppeteer = require('puppeteer-extra')
+const StealthPlugin = require('puppeteer-extra-plugin-stealth')
 // const mongoose = require('mongoose')
 
 const { interactWithBigo } = require('./bigo/bigoInteraction')
@@ -13,7 +13,7 @@ const { interactWithBigo } = require('./bigo/bigoInteraction')
 // }
 
 const runSingleBot = async function (bigoUrl, bot) {
-  // puppeteer.use(StealthPlugin())
+  puppeteer.use(StealthPlugin())
 
   try {
     const browser = await puppeteer.launch({
@@ -31,8 +31,6 @@ const runSingleBot = async function (bigoUrl, bot) {
 
     const [page] = await browser.pages()
     await page.setBypassCSP(true)
-    await page.setUserAgent(`BigoLive/5.41.2.2942(Android,9)/(bigoId,${bot.userId})`)
-
     try {
       await interactWithBigo(page, bigoUrl, bot.phone)
     } catch (ex) {
@@ -162,7 +160,7 @@ const main = async () => {
     // }
   ]
 
-  runMultipleBots('https://www.bigo.tv/907093840', bots)
+  runMultipleBots('https://www.bigo.tv/758393741', bots)
 }
 
 main()
