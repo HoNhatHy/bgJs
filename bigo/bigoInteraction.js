@@ -23,7 +23,9 @@ const comment = async function (page) {
   for (let i = 0; i < randomComment.length; i++) {
     await commentBox.type(randomComment[i])
   }
-  await page.click('.user_words_msg .send_btn')
+  await page.evaluate((_) => {
+    document.querySelector('.user_words_msg .send_btn').click()
+  })
   console.log('commented')
 }
 
@@ -68,7 +70,10 @@ const dragSliderToVerify = async function (page) {
   const handle = await sliderHandle.boundingBox()
   await page.mouse.move(
     handle.x + handle.width / 2,
-    handle.y + handle.height / 2
+    handle.y + handle.height / 2,
+    {
+      steps: 100 + new Date().getSeconds()
+    }
   )
   await page.mouse.down()
   await page.mouse.move(handle.x + 500, handle.y + handle.height / 2, {
@@ -78,40 +83,44 @@ const dragSliderToVerify = async function (page) {
 }
 
 const closeDownloadDialog = async function (page) {
-  await page.click('.download-dialog .close')
+  await moveCursor(page, '.download-dialog .close')
+  await page.evaluate((_) => {
+    document.querySelector('.download-dialog .close').click()
+  })
 }
 
 const typeInfoToLogin = async function (page, phoneNumber) {
   await moveCursor(page, '.head-right__login__btn')
-  await page.click('.head-right__login__btn')
+  await page.evaluate((_) => {
+    document.querySelector('.head-right__login__btn').click()
+  })
 
-  await sleep(500)
   await moveCursor(page, '.register-tips a')
-  await page.click('.register-tips a')
+  await page.evaluate((_) => {
+    document.querySelector('.register-tips a').click()
+  })
 
-  await sleep(500)
   await moveCursor(page, '.tab-login-sign__item')
-  await page.click('.tab-login-sign__item')
+  await page.evaluate((_) => {
+    document.querySelector('.tab-login-sign__item').click()
+  })
 
-  await sleep(500)
   const currentSelected = await page.$('input.current_selected')
   await moveCursor(page, 'input.current_selected')
-  await page.click('input.current_selected')
+  await page.evaluate((_) => {
+    document.querySelector('input.current_selected').click()
+  })
 
-  await sleep(200)
   const country = 'Vietnam'
   for (let i = 0; i < country.length; i++) {
     await currentSelected.type(country[i])
     await page.waitForTimeout(Math.random() * (100 - 50) + 50)
   }
-
-  await sleep(500)
-  await sleep(500)
   await moveCursor(page, 'ul.country_list li')
-  await page.click('ul.country_list li')
+  await page.evaluate((_) => {
+    document.querySelector('ul.country_list li').click()
+  })
 
-  sleep(500)
-  await sleep(500)
   await moveCursor(page, '.phone-number-box input')
   const phoneBox = await page.$('.phone-number-box input')
   for (let i = 0; i < phoneNumber.length; i++) {
@@ -119,7 +128,6 @@ const typeInfoToLogin = async function (page, phoneNumber) {
     await page.waitForTimeout(Math.random() * (100 - 50) + 50)
   }
 
-  await sleep(500)
   await moveCursor(page, '.password-tab input')
   const passwordBox = await page.$('.password-tab input')
   const password = '11011010aA'
@@ -145,7 +153,7 @@ const interactWithBigo = async function (page, bigoUrl, phoneNumber) {
 
   // 2) close advertisement
   await closeDownloadDialog(page)
-  await sleep(500)
+  await sleep(200)
 
   // 3) type login information
   await typeInfoToLogin(page, phoneNumber)
@@ -171,7 +179,9 @@ const interactWithBigo = async function (page, bigoUrl, phoneNumber) {
 
   // 5) hit submit button
   await moveCursor(page, '.btn-sumbit')
-  await page.click('.btn-sumbit')
+  await page.evaluate((_) => {
+    document.querySelector('.btn-sumbit').click()
+  })
   await sleep(5000)
 
   // 6) comment
