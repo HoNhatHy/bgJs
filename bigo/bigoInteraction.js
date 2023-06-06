@@ -182,9 +182,12 @@ const interactWithBigo = async function (page, bigoUrl, phoneNumber) {
   await page.evaluate((_) => {
     document.querySelector('.btn-sumbit').click()
   })
-  await sleep(5000)
 
-  // 6) comment
+  // 6) reload page
+  await page.reload()
+
+  // 7) comment
+  await sleep(5000)
   comment(page)
 }
 
